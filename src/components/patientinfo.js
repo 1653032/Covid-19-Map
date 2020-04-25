@@ -1,5 +1,5 @@
-import React,{useState} from "react"
-import {Container,Col,Row} from 'react-bootstrap'
+import React from "react"
+import {Row} from 'react-bootstrap'
 
 
 const PatientInfo = (props)=>{

@@ -1,0 +1,23 @@
+.rail{
+    height: 10px !important
+}
+
+.track{
+    height: 10px !important
+}
+
+.value-label{
+    top: -80px !important
+}
+
+.MuiSlider-thumb{
+    width: 18px !important;
+    height: 18px !important;
+    margin-left: -10px !important;
+}
+
+.value-label>span:first-child{
+    width: 75px;
+    height: 75px;
+}
+
