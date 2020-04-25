@@ -1,6 +1,7 @@
 {
   "name": "cov19map",
   "version": "0.1.0",
+  "homepage": "https://1653032.github.io/",
   "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "gh-pages": "^2.2.0",
     "google-map-react": "^1.1.7",
     "leaflet": "^1.6.0",
     "moment": "^2.24.0",
@@ -23,6 +25,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
