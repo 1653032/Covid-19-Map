@@ -138,14 +138,14 @@ class App extends React.Component{
         <Container style={{maxWidth:'1500px'}}>
           <Row>
             <Col lg={8}>
-            <div className="display-4 text-md-center">Corona's Patient Map</div>
+            <div className="display-4 text-md-center">Corona Cases Map</div>
               <div>
               {this.state.patients && <MyMapComponent onClick={this.onMarkerClicked} patients={this.state.activePatients} curPatient={this.state.curPatient || this.state.patients[0]}/>}
               </div>
             </Col>
             <Col lg={4}>
-              <div className="display-4 text-md-center">Patient Info</div>
-              <Row style={{wordWrap: 'normal',overflowY:'auto',paddingLeft:'15px',Height:'150px',lineHeight:'20px'}}>
+              <div className="display-4 text-md-center"> Patient Info</div>
+              <Row style={{wordWrap: 'normal',overflowY:'auto',paddingLeft:'15px',Height:'100px !important',lineHeight:'20px'}}>
                 <div style={{width:'100%',height:'100%'}}>
                   <PatientInfo patient={this.state.curPatient}></PatientInfo>
                 </div>
