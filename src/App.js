@@ -161,7 +161,7 @@ class App extends React.Component{
           </Row>
           <Row>
             <div className="display-4 text-md-center" style={{paddingBottom:'85px'}}>Date slider</div>
-            {this.state.patients && <Seekbar intervalChange={this.onIntervalChange} autoplay={this.state.autoplay} onAutoClicked={this.onAutoClicked} value={this.state.seekValue} onChange={this.onSeekbarChange} startDate={this.state.startDate} endDate={this.state.patients[0].verifyDate}></Seekbar>}
+            {this.state.patients && <Seekbar intervalChange={this.onIntervalChange} autoplay={this.state.autoplay} onAutoClicked={this.onAutoClicked} value={this.state.seekValue} onChange={this.onSeekbarChange} startDate={this.state.startDate} endDate={moment()}></Seekbar>}
           </Row>
         </Container>
       </div>
