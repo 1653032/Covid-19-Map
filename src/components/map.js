@@ -38,7 +38,7 @@
 
 // export default MyMapComponent
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 

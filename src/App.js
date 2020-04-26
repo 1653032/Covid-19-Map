@@ -27,13 +27,19 @@ class App extends React.Component{
       patients: null,
       curPatient: null,
       patientListRef: null,
-      startDate: "2020-01-22T00:00:00",
+      startDate: "2019-12-08T00:00:00",
       curDate: null,
       activePatients: null,
       activeRefs: null,
+      autoplay: false,
+      seekValue: 0,
+      intervalValue: 1000,
     };
+    this.interval = null;
     this.onMarkerClicked = this.onMarkerClicked.bind(this);
     this.onSeekbarChange = this.onSeekbarChange.bind(this);
+    this.onAutoClicked = this.onAutoClicked.bind(this);
+    this.onIntervalChange = this.onIntervalChange.bind(this);
   }
 
   onMarkerClicked(patient){
@@ -46,6 +52,32 @@ class App extends React.Component{
 
     this.setState({
       curPatient: this.state.patients[patientIndex]
+    })
+  }
+
+  onIntervalChange(value){
+    this.setState({
+        intervalValue: value
+    })
+
+    if(this.interval){
+      clearInterval(this.interval);
+      this.interval = this.interval= setInterval(()=>{this.onSeekbarChange(this.state.seekValue+1)},this.state.intervalValue);
+    }
+  }
+
+  onAutoClicked(){
+    const newState = !this.state.autoplay;
+    
+    if(newState){
+      this.interval= setInterval(()=>{this.onSeekbarChange(this.state.seekValue+1)},this.state.intervalValue);
+    } else {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
+
+    this.setState({
+      autoplay: newState
     })
   }
 
@@ -79,13 +111,13 @@ class App extends React.Component{
         })
       },
     )
-  }
+  } 
 
   onSeekbarChange(steps){
     const newCurDate = moment(this.state.startDate).add(steps,'days');
     const newrefs = [];
     const newActivePatients = this.state.patients.reduce((acc,value,index)=>{
-      if(moment(value.verifyDate).isBefore(newCurDate) || value.verifyDate == newCurDate){
+      if(moment(value.verifyDate).isBefore(newCurDate) || value.verifyDate === newCurDate){
         acc.push(value);
         newrefs.push(this.state.patientListRef[index]);
       }
@@ -93,9 +125,10 @@ class App extends React.Component{
     },[])
 
     this.setState({
-      curDate: newCurDate,
+      curDate: steps,
       activePatients: newActivePatients,
       activeRefs: newrefs,
+      seekValue: steps
     })
   }
 
@@ -128,7 +161,7 @@ class App extends React.Component{
           </Row>
           <Row>
             <div className="display-4 text-md-center" style={{paddingBottom:'85px'}}>Date slider</div>
-            {this.state.patients && <Seekbar onChange={this.onSeekbarChange} startDate={this.state.startDate} endDate={this.state.patients[0].verifyDate}></Seekbar>}
+            {this.state.patients && <Seekbar intervalChange={this.onIntervalChange} autoplay={this.state.autoplay} onAutoClicked={this.onAutoClicked} value={this.state.seekValue} onChange={this.onSeekbarChange} startDate={this.state.startDate} endDate={this.state.patients[0].verifyDate}></Seekbar>}
           </Row>
         </Container>
       </div>
