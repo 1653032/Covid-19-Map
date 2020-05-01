@@ -33,7 +33,7 @@ class App extends React.Component{
           <Route path="/cov19map/stats">
             <Charts></Charts>
           </Route>
-          <Route exact path="/cov19map">
+          <Route exact path="/cov19map/">
             <Dashboard />
           </Route>
         </Switch>

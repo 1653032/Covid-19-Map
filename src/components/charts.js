@@ -15,13 +15,19 @@ class Charts extends React.Component {
     }
 
     componentDidMount() {
-
         fetch("https://td.fpt.ai/corona/corona-chart-vn.json")
         .then(res => res.json()).then(result=> {
             let labels = Object.keys(result);
             let Infected = labels.map(key => result[key][0]);
             let Dead = labels.map(key => result[key][1]);
             let Cured = labels.map(key => result[key][2]);
+
+            //Because the requirement stated 'When navigate to /stats display two line charts about COVID-19 statistics of Vietnam and the World from Dec 08'19 to the current date'
+            labels.unshift('Ngày 8/12');
+            Infected.unshift(0);
+            Dead.unshift(0);
+            Cured.unshift(0);
+
             this.setState({
                 vnData: {
                     labels: labels,
@@ -172,7 +178,7 @@ class Charts extends React.Component {
         return(
             <Container style={{maxWidth:'1500px'}}>
                 <div className="display-4 text-md-center">Corona Stats</div>
-              <div></div>
+                <br/><br/>
             <Row>
                 <Col lg={6}>
                 <p class="text-center">Số ca mắc, cách ly và khỏi bệnh của Việt Nam</p>
