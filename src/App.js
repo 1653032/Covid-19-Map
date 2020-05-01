@@ -33,6 +33,9 @@ class App extends React.Component{
           <Route path="/stats">
             <Charts></Charts>
           </Route>
+          <Route exact path="/">
+            <Dashboard />
+          </Route>
         </Switch>
       </Router>
     );
