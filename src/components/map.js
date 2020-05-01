@@ -67,7 +67,7 @@ const Markers = (props) => {
 const MyMapComponent = (props) => {
     return <Map
     style={{width: '100%',height:'600px'}}
-    center={[10.7629,106.6822]} zoom={4}>
+    center={props.curPatient?[props.curPatient.lat,props.curPatient.lng]:[10.7629,106.6822]} zoom={props.curPatient?8:4}>
         <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png   "
