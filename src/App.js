@@ -20,20 +20,20 @@ class App extends React.Component{
       <Router>
         <nav class="navbar sticky-top navbar-dark bg-dark" style={{margin:'0 auto',display:'block',textAlign:'center',float:'none'}}>
           <Row>
-            <Col lg={6}><Link to="/map" role="button" aria-pressed="true" className="navbar-brand">Dashboard</Link></Col>
-            <Col lg={6}><Link to="/stats" role="button" aria-pressed="true" className="navbar-brand">Charts</Link></Col>
+            <Col lg={6}><Link to="/cov19map/map" role="button" aria-pressed="true" className="navbar-brand">Dashboard</Link></Col>
+            <Col lg={6}><Link to="/cov19map/stats" role="button" aria-pressed="true" className="navbar-brand">Charts</Link></Col>
           </Row>
         </nav>
         <br/>
         <br/>
         <Switch>
-          <Route path="/map">
+          <Route path="/cov19map/map">
           <Dashboard></Dashboard>
           </Route>
-          <Route path="/stats">
+          <Route path="/cov19map/stats">
             <Charts></Charts>
           </Route>
-          <Route exact path="/">
+          <Route exact path="/cov19map">
             <Dashboard />
           </Route>
         </Switch>
